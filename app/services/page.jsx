@@ -1,11 +1,16 @@
-import react from 'react'
+"use client";
 
-import ServicePage from '../_components/serve';
+import react from "react";
 
-function Services(){
-    return(
-         <ServicePage/>
-    )
+import ServicePage from "../_components/serve";
+import ScrollToTop from "../_components/ScrollToTop";
+function Services() {
+  return (
+    <>
+      <ServicePage />
+      <ScrollToTop />
+    </>
+  );
 }
 
 export default Services;

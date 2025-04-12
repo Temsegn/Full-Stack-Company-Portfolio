@@ -1,24 +1,26 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { MapPin, Phone, Mail, ChevronDown, ChevronUp } from "lucide-react"
-import Form from "../_components/form"
-import Card from "../_components/Card"
-import Welcome from "../_components/welcome"
+import { useState } from "react";
+import { MapPin, Phone, Mail, ChevronDown, ChevronUp } from "lucide-react";
+import Form from "../_components/form";
+import Card from "../_components/Card";
+import Welcome from "../_components/welcome";
+import ScrollToTop from "../_components/ScrollToTop";
 
 // Simple utility function for conditional class names
 const classNames = (...classes) => {
-  return classes.filter(Boolean).join(" ")
-}
+  return classes.filter(Boolean).join(" ");
+};
 
 const questions = [
   {
     question: "What are your operating hours?",
-    answer: "We operate from 9 AM to 5 PM, Monday to Friday.",
+    answer: "We operate from 2 AM to 12:30 PM, Monday to Saturday.",
   },
   {
     question: "How can I book an appointment?",
-    answer: "You can book an appointment through our website or by calling our office.",
+    answer:
+      "You can book an appointment through our website or by calling our office.",
   },
   {
     question: "Do you offer Consultation services?",
@@ -28,28 +30,35 @@ const questions = [
     question: "Where can I learn Your Course?",
     answer: "You can take our course either online or in person.",
   },
-]
+];
 
 function Contact() {
-  const [activeQuestion, setActiveQuestion] = useState(null)
+  const [activeQuestion, setActiveQuestion] = useState(null);
 
   const toggleQuestion = (index) => {
-    setActiveQuestion(activeQuestion === index ? null : index)
-  }
+    setActiveQuestion(activeQuestion === index ? null : index);
+  };
 
   return (
     <div className="bg-white mt-16">
-      <Welcome title="WE ARE HERE FOR YOU" url="/d8.jpg" button="Contact Us" link="/contact" />
+      <Welcome
+        title="WE ARE HERE FOR YOU"
+        url="/d8.jpg"
+        button="Contact Us"
+        link="/contact"
+      />
 
       {/* Contact Info Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-semibold text-gray-800 mb-4">Get In Touch</h2>
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              Get In Touch
+            </h2>
             <div className="w-16 h-0.5 bg-orange-600 mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg font-light">
-              Our team is available to assist you with any inquiries. Please reach out through any of the following
-              channels.
+              Our team is available to assist you with any inquiries. Please
+              reach out through any of the following channels.
             </p>
           </div>
 
@@ -61,8 +70,12 @@ function Contact() {
                 </div>
                 <h3 className="text-xl font-medium text-gray-800">Call Us</h3>
               </div>
-              <p className="text-gray-600 font-light">Our support team is available during business hours.</p>
-              <p className="text-gray-800 mt-4 font-medium">+251 992 32 72 07</p>
+              <p className="text-gray-600 font-light">
+                Our support team is available during business hours.
+              </p>
+              <p className="text-gray-800 mt-4 font-medium">
+                +251 992 32 72 07
+              </p>
             </div>
 
             <div className="bg-white p-8 rounded-sm border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
@@ -72,8 +85,12 @@ function Contact() {
                 </div>
                 <h3 className="text-xl font-medium text-gray-800">Email Us</h3>
               </div>
-              <p className="text-gray-600 font-light">Send us an email and we'll respond within 24 hours.</p>
-              <p className="text-gray-800 mt-4 font-medium">dreammore2122@gmail.com</p>
+              <p className="text-gray-600 font-light">
+                Send us an email and we'll respond within 24 hours.
+              </p>
+              <p className="text-gray-800 mt-4 font-medium">
+                dreammore2122@gmail.com
+              </p>
             </div>
 
             <div className="bg-white p-8 rounded-sm border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
@@ -83,8 +100,12 @@ function Contact() {
                 </div>
                 <h3 className="text-xl font-medium text-gray-800">Visit Us</h3>
               </div>
-              <p className="text-gray-600 font-light">Our office is centrally located and easily accessible.</p>
-              <p className="text-gray-800 mt-4 font-medium">101 Lemlemitu Building, Bahir Dar City</p>
+              <p className="text-gray-600 font-light">
+                Our office is centrally located and easily accessible.
+              </p>
+              <p className="text-gray-800 mt-4 font-medium">
+                G+3 Papyrus Building, Bahir Dar City
+              </p>
             </div>
           </div>
         </div>
@@ -101,21 +122,29 @@ function Contact() {
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-semibold text-gray-800 mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              Frequently Asked Questions
+            </h2>
             <div className="w-16 h-0.5 bg-orange-600 mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-2xl mx-auto font-light">
-              Find answers to common questions about our services and operations.
+              Find answers to common questions about our services and
+              operations.
             </p>
           </div>
 
           <div className="space-y-4">
             {questions.map((q, index) => (
-              <div key={index} className="border border-gray-200 rounded-sm overflow-hidden">
+              <div
+                key={index}
+                className="border border-gray-200 rounded-sm overflow-hidden"
+              >
                 <button
                   onClick={() => toggleQuestion(index)}
                   className="w-full p-5 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors duration-200"
                 >
-                  <h3 className="text-lg font-medium text-gray-800">{q.question}</h3>
+                  <h3 className="text-lg font-medium text-gray-800">
+                    {q.question}
+                  </h3>
                   {activeQuestion === index ? (
                     <ChevronUp className="h-5 w-5 text-gray-400" />
                   ) : (
@@ -125,7 +154,7 @@ function Contact() {
                 <div
                   className={classNames(
                     "bg-gray-50 overflow-hidden transition-all duration-200",
-                    activeQuestion === index ? "max-h-40 py-5 px-5" : "max-h-0",
+                    activeQuestion === index ? "max-h-40 py-5 px-5" : "max-h-0"
                   )}
                 >
                   <p className="text-gray-600 font-light">{q.answer}</p>
@@ -140,10 +169,13 @@ function Contact() {
       <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-semibold text-gray-800 mb-4">Our Location</h2>
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              Our Location
+            </h2>
             <div className="w-16 h-0.5 bg-orange-600 mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-2xl mx-auto font-light">
-              Visit our office in Bahir Dar, conveniently located in the city center.
+              Visit our office in Bahir Dar, conveniently located in the city
+              center.
             </p>
           </div>
 
@@ -165,15 +197,19 @@ function Contact() {
             </div>
 
             <div className="bg-white p-8 rounded-sm border border-gray-200 shadow-sm">
-              <h3 className="text-xl font-medium text-gray-800 mb-6">Bahir Dar Papyrus</h3>
+              <h3 className="text-xl font-medium text-gray-800 mb-6">
+                  ድሪም ሞር ካምፓኒ 
+              </h3>
 
               <div className="space-y-6">
                 <div className="flex">
                   <MapPin className="h-5 w-5 text-orange-600 flex-shrink-0 mt-1 mr-3" />
                   <div>
-                    <h4 className="text-base font-medium text-gray-700">Address</h4>
+                    <h4 className="text-base font-medium text-gray-700">
+                      Address
+                    </h4>
                     <p className="text-gray-600 mt-1 font-light">
-                      101 Lemlemitu Building
+                      Payprus Building-ፓፒረስ ህንጻ
                       <br />
                       Bahir Dar City, Ethiopia
                     </p>
@@ -183,25 +219,35 @@ function Contact() {
                 <div className="flex">
                   <Phone className="h-5 w-5 text-orange-600 flex-shrink-0 mt-1 mr-3" />
                   <div>
-                    <h4 className="text-base font-medium text-gray-700">Phone</h4>
-                    <p className="text-gray-600 mt-1 font-light">+251 992 32 72 07</p>
+                    <h4 className="text-base font-medium text-gray-700">
+                      Phone
+                    </h4>
+                    <p className="text-gray-600 mt-1 font-light">
+                      +251 992 32 72 07
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex">
                   <Mail className="h-5 w-5 text-orange-600 flex-shrink-0 mt-1 mr-3" />
                   <div>
-                    <h4 className="text-base font-medium text-gray-700">Email</h4>
-                    <p className="text-gray-600 mt-1 font-light">dreammore2122@gmail.com</p>
+                    <h4 className="text-base font-medium text-gray-700">
+                      Email
+                    </h4>
+                    <p className="text-gray-600 mt-1 font-light">
+                      dreammore2122@gmail.com
+                    </p>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-gray-100">
-                  <h4 className="text-base font-medium text-gray-700 mb-2">Business Hours</h4>
+                  <h4 className="text-base font-medium text-gray-700 mb-2">
+                    Business Hours
+                  </h4>
                   <p className="text-gray-600 font-light">
-                    Monday - Friday: 9:00 AM - 5:00 PM
+                    Monday - Saturday: 2:00 AM - 12:30 PM
                     <br />
-                    Saturday - Sunday: Closed
+                    Sunday: Closed
                   </p>
                 </div>
               </div>
@@ -211,9 +257,9 @@ function Contact() {
       </section>
 
       <Card />
+      <ScrollToTop />
     </div>
-  )
+  );
 }
 
-export default Contact
-
+export default Contact;

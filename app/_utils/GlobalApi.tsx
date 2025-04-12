@@ -14,7 +14,7 @@ const GlobalApi = {
   getCourse: () => axiosClient.get("/courses?populate=*"),
   getBlog: () => axiosClient.get("/blogs?populate=*"),
   getProject: () => axiosClient.get("/projects?populate=*"),
-
-};
+  getTestimonial: () => axiosClient.get("/testimonials?populate=*"),
+ };
 
 export default GlobalApi;

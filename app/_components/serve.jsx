@@ -1,10 +1,16 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion"
+import { useEffect, useRef, useState } from "react";
+import ScrollToTop from "./ScrollToTop";
+import {
+  motion,
+  useAnimation,
+  useInView,
+  AnimatePresence,
+} from "framer-motion";
 
-import Card from "./Card"
-import Welcome from "./welcome"
+import Card from "./Card";
+import Welcome from "./welcome";
 
 import {
   CodeBracketIcon,
@@ -31,7 +37,7 @@ import {
   ServerIcon,
   ShieldCheckIcon,
   ArrowUpIcon,
-} from "@heroicons/react/24/solid"
+} from "@heroicons/react/24/solid";
 
 const services = [
   {
@@ -42,7 +48,8 @@ const services = [
     Software: [
       {
         title: "Web Development",
-        detail: "We create responsive websites and web applications that work on any device.",
+        detail:
+          "We create responsive websites and web applications that work on any device.",
         icon: <CodeBracketIcon className="w-12 h-12 text-blue-500" />,
       },
       {
@@ -52,7 +59,8 @@ const services = [
       },
       {
         title: "Desktop Development",
-        detail: "We create desktop applications that run on Windows, Mac, and Linux.",
+        detail:
+          "We create desktop applications that run on Windows, Mac, and Linux.",
         icon: <ComputerDesktopIcon className="w-12 h-12 text-purple-500" />,
       },
       {
@@ -62,7 +70,8 @@ const services = [
       },
       {
         title: "Cloud Solutions",
-        detail: "We provide cloud-based solutions for scalability and reliability.",
+        detail:
+          "We provide cloud-based solutions for scalability and reliability.",
         icon: <CloudIcon className="w-12 h-12 text-yellow-500" />,
       },
       {
@@ -80,17 +89,20 @@ const services = [
     Graphics: [
       {
         title: "Logo Design",
-        detail: "We design logos that represent your brand and make a lasting impression.",
+        detail:
+          "We design logos that represent your brand and make a lasting impression.",
         icon: <PaintBrushIcon className="w-12 h-12 text-pink-500" />,
       },
       {
         title: "Print Design",
-        detail: "We create business cards, brochures, and other print materials.",
+        detail:
+          "We create business cards, brochures, and other print materials.",
         icon: <PrinterIcon className="w-12 h-12 text-teal-500" />,
       },
       {
         title: "Web Design",
-        detail: "We design websites that are visually appealing and easy to use.",
+        detail:
+          "We design websites that are visually appealing and easy to use.",
         icon: <GlobeAltIcon className="w-12 h-12 text-blue-500" />,
       },
       {
@@ -118,17 +130,20 @@ const services = [
     Digital: [
       {
         title: "SEO",
-        detail: "We optimize your website to rank higher in search engine results.",
+        detail:
+          "We optimize your website to rank higher in search engine results.",
         icon: <MagnifyingGlassIcon className="w-12 h-12 text-blue-500" />,
       },
       {
         title: "Social Media Marketing",
-        detail: "We create and manage social media campaigns to increase brand awareness.",
+        detail:
+          "We create and manage social media campaigns to increase brand awareness.",
         icon: <ShareIcon className="w-12 h-12 text-green-500" />,
       },
       {
         title: "Email Marketing",
-        detail: "We create email campaigns that drive traffic and generate leads.",
+        detail:
+          "We create email campaigns that drive traffic and generate leads.",
         icon: <EnvelopeIcon className="w-12 h-12 text-purple-500" />,
       },
       {
@@ -143,7 +158,8 @@ const services = [
       },
       {
         title: "Analytics & Reporting",
-        detail: "We provide insights and reports to track campaign performance.",
+        detail:
+          "We provide insights and reports to track campaign performance.",
         icon: <ChartBarIcon className="w-12 h-12 text-indigo-500" />,
       },
     ],
@@ -151,21 +167,25 @@ const services = [
   {
     id: "consulting",
     Name: "Consulting",
-    description: "Expert consulting services to help your business overcome challenges and achieve sustainable growth.",
+    description:
+      "Expert consulting services to help your business overcome challenges and achieve sustainable growth.",
     consulting: [
       {
         title: "Business Consulting",
-        detail: "We help businesses improve their processes and increase their profits.",
+        detail:
+          "We help businesses improve their processes and increase their profits.",
         icon: <BriefcaseIcon className="w-12 h-12 text-blue-500" />,
       },
       {
         title: "Technology Consulting",
-        detail: "We advise companies on how to use technology to achieve their goals.",
+        detail:
+          "We advise companies on how to use technology to achieve their goals.",
         icon: <CogIcon className="w-12 h-12 text-green-500" />,
       },
       {
         title: "Marketing Consulting",
-        detail: "We provide marketing strategies that help businesses grow and succeed.",
+        detail:
+          "We provide marketing strategies that help businesses grow and succeed.",
         icon: <LightBulbIcon className="w-12 h-12 text-purple-500" />,
       },
       {
@@ -198,12 +218,14 @@ const services = [
       },
       {
         title: "Graphic Design",
-        detail: "We teach courses in Adobe Photoshop, Illustrator, and InDesign.",
+        detail:
+          "We teach courses in Adobe Photoshop, Illustrator, and InDesign.",
         icon: <PaintBrushIcon className="w-12 h-12 text-green-500" />,
       },
       {
         title: "Digital Marketing",
-        detail: "We provide training in SEO, social media marketing, and email marketing.",
+        detail:
+          "We provide training in SEO, social media marketing, and email marketing.",
         icon: <MegaphoneIcon className="w-12 h-12 text-purple-500" />,
       },
       {
@@ -223,7 +245,7 @@ const services = [
       },
     ],
   },
-]
+];
 
 // Animation variants
 const fadeInUp = {
@@ -237,7 +259,7 @@ const fadeInUp = {
       damping: 15,
     },
   },
-}
+};
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -245,7 +267,7 @@ const fadeIn = {
     opacity: 1,
     transition: { duration: 0.6 },
   },
-}
+};
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -255,7 +277,7 @@ const staggerContainer = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -270,7 +292,8 @@ const cardVariants = {
   },
   hover: {
     y: -10,
-    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    boxShadow:
+      "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
     borderColor: "rgba(249, 115, 22, 0.5)",
     transition: {
       type: "spring",
@@ -278,26 +301,32 @@ const cardVariants = {
       damping: 10,
     },
   },
-}
+};
 
 // Animated section component
 const AnimatedSection = ({ children, delay = 0 }) => {
-  const controls = useAnimation()
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [controls, isInView])
+  }, [controls, isInView]);
 
   return (
-    <motion.div ref={ref} initial="hidden" animate={controls} variants={fadeInUp} transition={{ delay }}>
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={fadeInUp}
+      transition={{ delay }}
+    >
       {children}
     </motion.div>
-  )
-}
+  );
+};
 
 const ServiceCard = ({ id, icon, title, detail }) => {
   return (
@@ -316,92 +345,51 @@ const ServiceCard = ({ id, icon, title, detail }) => {
       <h3 className="text-xl text-gray-800 font-semibold mb-3">{title}</h3>
       <p className="text-gray-600 leading-relaxed">{detail}</p>
     </motion.div>
-  )
-}
-
-const ScrollToTop = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true)
-    } else {
-      setIsVisible(false)
-    }
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  }
-
-  useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility)
-    return () => window.removeEventListener("scroll", toggleVisibility)
-  }, [])
-
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-orange-500 hover:bg-orange-600 text-white p-4 rounded-full shadow-lg transition-all duration-300"
-          aria-label="Scroll to top"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ArrowUpIcon className="h-6 w-6" />
-        </motion.button>
-      )}
-    </AnimatePresence>
-  )
-}
+  );
+};
 
 const ServiceNavigation = () => {
-  const [activeSection, setActiveSection] = useState("")
-  const [isSticky, setIsSticky] = useState(false)
+  const [activeSection, setActiveSection] = useState("");
+  const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       // For sticky nav
       if (window.scrollY > 400) {
-        setIsSticky(true)
+        setIsSticky(true);
       } else {
-        setIsSticky(false)
+        setIsSticky(false);
       }
 
       // For active section
-      const sections = services.map((service) => document.getElementById(service.id)).filter(Boolean)
+      const sections = services
+        .map((service) => document.getElementById(service.id))
+        .filter(Boolean);
 
-      const scrollPosition = window.scrollY + 200
+      const scrollPosition = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
+        const section = sections[i];
         if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(services[i].id)
-          break
+          setActiveSection(services[i].id);
+          break;
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id) => {
-    const element = document.getElementById(id)
+    const element = document.getElementById(id);
     if (element) {
       window.scrollTo({
         top: element.offsetTop - 100,
         behavior: "smooth",
-      })
+      });
     }
-  }
+  };
 
   return (
     <motion.div
@@ -413,7 +401,9 @@ const ServiceNavigation = () => {
         top: isSticky ? "0" : "auto",
       }}
       transition={{ duration: 0.5 }}
-      className={`z-40 bg-white shadow-lg rounded-none py-4 mb-0 w-full ${isSticky ? "sticky top-0 shadow-xl" : ""}`}
+      className={`z-40 bg-white shadow-lg rounded-none py-4 mb-0 w-full ${
+        isSticky ? "sticky top-0 shadow-xl" : ""
+      }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-center space-x-2 md:space-x-6 overflow-x-auto pb-2 scrollbar-hide">
@@ -433,25 +423,30 @@ const ServiceNavigation = () => {
         </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
 const ServicesPage = () => {
   // For parallax effect
-  const [scrollY, setScrollY] = useState(0)
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
+      setScrollY(window.scrollY);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <Welcome title="Our Services" url="d1.jpg" button="Get Services" link="/course" />
+      <Welcome
+        title="Our Services"
+        url="d1.jpg"
+        button="Get Services"
+        link="/course"
+      />
 
       <ServiceNavigation />
 
@@ -460,15 +455,21 @@ const ServicesPage = () => {
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
           <div
             className="absolute -top-20 -right-20 w-96 h-96 bg-orange-100 rounded-full opacity-20"
-            style={{ transform: `translate(${scrollY * 0.05}px, ${scrollY * -0.05}px)` }}
+            style={{
+              transform: `translate(${scrollY * 0.05}px, ${scrollY * -0.05}px)`,
+            }}
           ></div>
           <div
             className="absolute top-1/3 -left-20 w-64 h-64 bg-blue-100 rounded-full opacity-20"
-            style={{ transform: `translate(${scrollY * -0.03}px, ${scrollY * 0.03}px)` }}
+            style={{
+              transform: `translate(${scrollY * -0.03}px, ${scrollY * 0.03}px)`,
+            }}
           ></div>
           <div
             className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-100 rounded-full opacity-20"
-            style={{ transform: `translate(${scrollY * 0.02}px, ${scrollY * 0.02}px)` }}
+            style={{
+              transform: `translate(${scrollY * 0.02}px, ${scrollY * 0.02}px)`,
+            }}
           ></div>
         </div>
 
@@ -504,9 +505,11 @@ const ServicesPage = () => {
                 transition={{ delay: 0.5 }}
                 className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
               >
-                We provide a wide range of professional services to help your business grow and succeed. From software
-                development and graphic design to digital marketing and consulting, our team is dedicated to delivering
-                high-quality solutions tailored to your needs.
+                We provide a wide range of professional services to help your
+                business grow and succeed. From software development and graphic
+                design to digital marketing and consulting, our team is
+                dedicated to delivering high-quality solutions tailored to your
+                needs.
               </motion.p>
             </div>
           </AnimatedSection>
@@ -523,7 +526,9 @@ const ServicesPage = () => {
                     </h2>
                   </div>
                   <div className="h-px bg-gray-200 flex-grow hidden md:block"></div>
-                  <p className="text-gray-600 md:max-w-xl">{service.description}</p>
+                  <p className="text-gray-600 md:max-w-xl">
+                    {service.description}
+                  </p>
                 </div>
               </AnimatedSection>
 
@@ -536,23 +541,53 @@ const ServicesPage = () => {
               >
                 {service.Software &&
                   service.Software.map((item, idx) => (
-                    <ServiceCard key={idx} id={idx} icon={item.icon} title={item.title} detail={item.detail} />
+                    <ServiceCard
+                      key={idx}
+                      id={idx}
+                      icon={item.icon}
+                      title={item.title}
+                      detail={item.detail}
+                    />
                   ))}
                 {service.Graphics &&
                   service.Graphics.map((item, idx) => (
-                    <ServiceCard key={idx} id={idx} icon={item.icon} title={item.title} detail={item.detail} />
+                    <ServiceCard
+                      key={idx}
+                      id={idx}
+                      icon={item.icon}
+                      title={item.title}
+                      detail={item.detail}
+                    />
                   ))}
                 {service.Digital &&
                   service.Digital.map((item, idx) => (
-                    <ServiceCard key={idx} id={idx} icon={item.icon} title={item.title} detail={item.detail} />
+                    <ServiceCard
+                      key={idx}
+                      id={idx}
+                      icon={item.icon}
+                      title={item.title}
+                      detail={item.detail}
+                    />
                   ))}
                 {service.consulting &&
                   service.consulting.map((item, idx) => (
-                    <ServiceCard key={idx} id={idx} icon={item.icon} title={item.title} detail={item.detail} />
+                    <ServiceCard
+                      key={idx}
+                      id={idx}
+                      icon={item.icon}
+                      title={item.title}
+                      detail={item.detail}
+                    />
                   ))}
                 {service.Training &&
                   service.Training.map((item, idx) => (
-                    <ServiceCard key={idx} id={idx} icon={item.icon} title={item.title} detail={item.detail} />
+                    <ServiceCard
+                      key={idx}
+                      id={idx}
+                      icon={item.icon}
+                      title={item.title}
+                      detail={item.detail}
+                    />
                   ))}
               </motion.div>
 
@@ -603,8 +638,9 @@ const ServicesPage = () => {
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="text-lg text-white opacity-90 max-w-2xl text-center mb-10 relative z-10"
               >
-                Join our team of experts and be part of creating innovative solutions for businesses worldwide. We offer
-                continuous learning and growth opportunities.
+                Join our team of experts and be part of creating innovative
+                solutions for businesses worldwide. We offer continuous learning
+                and growth opportunities.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -630,8 +666,7 @@ const ServicesPage = () => {
 
       <ScrollToTop />
     </>
-  )
-}
+  );
+};
 
-export default ServicesPage
-
+export default ServicesPage;

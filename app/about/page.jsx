@@ -1,13 +1,13 @@
-"use client"
-import { useState, useEffect, useRef } from "react"
-import Welcome from "../_components/welcome"
-import Core from "../_components/coreValue"
-import Card from "../_components/Card"
-import Vision from "../_components/vision"
-import Mission from "../_components/mission"
-import { teamMembers } from "../data/team"
-import Link from "next/link"
-import { motion } from "framer-motion"
+"use client";
+import { useState, useEffect, useRef } from "react";
+import Welcome from "../_components/welcome";
+import Core from "../_components/coreValue";
+import Card from "../_components/Card";
+import Vision from "../_components/vision";
+import Mission from "../_components/mission";
+import { teamMembers } from "../data/team";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 // Reusable Button Component with improved animations
 const Button = ({ href, text, bgColor, hoverBgColor }) => (
@@ -43,7 +43,7 @@ const Button = ({ href, text, bgColor, hoverBgColor }) => (
       <polyline points="12 5 19 12 12 19"></polyline>
     </svg>
   </a>
-)
+);
 
 // Enhanced Card Component with animations
 const Car = ({ icon, title, description, isActive, onClick }) => (
@@ -52,7 +52,9 @@ const Car = ({ icon, title, description, isActive, onClick }) => (
     transition={{ type: "spring", stiffness: 300 }}
     onClick={onClick}
     className={`cursor-pointer block h-full transition-all duration-300 bg-white border ${
-      isActive ? "border-orange-500 shadow-lg ring-2 ring-orange-500/20" : "border-gray-200"
+      isActive
+        ? "border-orange-500 shadow-lg ring-2 ring-orange-500/20"
+        : "border-gray-200"
     } rounded-lg hover:shadow-lg hover:border-orange-500 hover:ring-1 hover:ring-orange-500/20`}
   >
     <div className="flex items-center p-6">
@@ -61,7 +63,11 @@ const Car = ({ icon, title, description, isActive, onClick }) => (
           isActive ? "bg-orange-100" : "bg-orange-50"
         } group-hover:bg-orange-100`}
       >
-        <img src={icon || "/placeholder.svg"} alt={title} className="w-10 h-10" />
+        <img
+          src={icon || "/placeholder.svg"}
+          alt={title}
+          className="w-10 h-10"
+        />
       </div>
       <div className="flex-grow ml-6">
         <h3
@@ -86,40 +92,44 @@ const Car = ({ icon, title, description, isActive, onClick }) => (
           strokeWidth="1.5"
           stroke="currentColor"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          ></path>
         </svg>
       </div>
     </div>
   </motion.div>
-)
+);
 
 // Custom hook for scroll animations
 function useScrollAnimation() {
-  const [scrollY, setScrollY] = useState(0)
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
+      setScrollY(window.scrollY);
+    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  return scrollY
+  return scrollY;
 }
 
 function About() {
-  const [selectedSection, setSelectedSection] = useState("vision")
-  const scrollY = useScrollAnimation()
-  const aboutRef = useRef(null)
-  const mvcRef = useRef(null)
-  const teamRef = useRef(null)
+  const [selectedSection, setSelectedSection] = useState("vision");
+  const scrollY = useScrollAnimation();
+  const aboutRef = useRef(null);
+  const mvcRef = useRef(null);
+  const teamRef = useRef(null);
 
   // Function to handle button click and update the selected section
   const handleButtonClick = (section) => {
-    setSelectedSection(section)
-  }
+    setSelectedSection(section);
+  };
 
   // Animation variants for scroll animations
   const fadeInUp = {
@@ -129,11 +139,16 @@ function About() {
       y: 0,
       transition: { duration: 0.6, ease: "easeOut" },
     },
-  }
+  };
 
   return (
     <>
-      <Welcome title="About Dream More" url="d4.jpg" button="Ask Us" link="/contact" />
+      <Welcome
+        title="About Dream More"
+        url="d4.jpg"
+        button="Ask Us"
+        link="/contact"
+      />
 
       {/* About Us Section with enhanced animations */}
       <motion.section
@@ -160,19 +175,43 @@ function About() {
               >
                 Our Story
               </motion.span>
-              <motion.h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-6" variants={fadeInUp}>
+              <motion.h2
+                className="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-6"
+                variants={fadeInUp}
+              >
                 About <span className="text-orange-600">Dream More</span>
               </motion.h2>
-              <motion.p className="mt-4 text-gray-600 text-lg leading-relaxed" variants={fadeInUp}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis eros at lacus feugiat hendrerit sed ut
-                tortor. Suspendisse et magna quis elit efficitur consequat.
+              <motion.p
+                className="mt-4 text-gray-600 text-lg leading-relaxed"
+                variants={fadeInUp}
+              >
+                Dream More Company delivers a comprehensive suite of software
+                solutions, tech training, home tutoring, and marketing services,
+                empowering teams to create scalable, innovative applications
+                while reducing development time .
               </motion.p>
-              <motion.div className="relative flex flex-col sm:flex-row sm:space-x-4 mt-8" variants={fadeInUp}>
-                <Button href="#" text="Our Services" bgColor="orange-600" hoverBgColor="white" />
-                <Button href="#" text="Get Course" bgColor="white" hoverBgColor="gray-800" />
+              <motion.div
+                className="relative flex flex-col sm:flex-row sm:space-x-4 mt-8"
+                variants={fadeInUp}
+              >
+                <Button
+                  href="#"
+                  text="Our Services"
+                  bgColor="orange-600"
+                  hoverBgColor="gray-800"
+                />
+                <Button
+                  href="#"
+                  text="Get Course"
+                  bgColor="white"
+                  hoverBgColor="gray-800"
+                />
               </motion.div>
             </motion.div>
-            <motion.div className="relative group w-full h-auto" variants={fadeInUp}>
+            <motion.div
+              className="relative group w-full h-auto"
+              variants={fadeInUp}
+            >
               <div className="absolute -inset-2 bg-gradient-to-r from-orange-600 to-orange-400 rounded-lg blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative overflow-hidden rounded-lg shadow-xl">
                 <img
@@ -203,7 +242,10 @@ function About() {
             >
               Our Foundation
             </motion.span>
-            <motion.h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl" variants={fadeInUp}>
+            <motion.h2
+              className="text-3xl font-extrabold text-gray-900 sm:text-4xl"
+              variants={fadeInUp}
+            >
               What Drives <span className="text-orange-600">Us Forward</span>
             </motion.h2>
           </motion.div>
@@ -287,11 +329,20 @@ function About() {
             >
               THE TEAM
             </motion.span>
-            <motion.h3 className="text-3xl sm:text-4xl font-extrabold text-gray-900" variants={fadeInUp}>
+            <motion.h3
+              className="text-3xl sm:text-4xl font-extrabold text-gray-900"
+              variants={fadeInUp}
+            >
               Meet Our <span className="text-orange-600">Experts</span>
             </motion.h3>
-            <motion.p className="text-gray-600 mt-4 max-w-2xl mx-auto" variants={fadeInUp}>
-              "We are a team of <span className="text-orange-600 font-medium">talented, innovative, dedicated</span>{" "}
+            <motion.p
+              className="text-gray-600 mt-4 max-w-2xl mx-auto"
+              variants={fadeInUp}
+            >
+              "We are a team of{" "}
+              <span className="text-orange-600 font-medium">
+                talented, innovative, dedicated
+              </span>{" "}
               professionals"
             </motion.p>
           </motion.div>
@@ -319,7 +370,8 @@ function About() {
                   },
                 }}
               >
-                <Link href={`/about/${index}`} className="block group">
+                <Link href={`/about/${member.id}`} className="group block">
+                  {" "}
                   <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                     <div className="relative overflow-hidden h-72">
                       <img
@@ -333,9 +385,12 @@ function About() {
                       <h3 className="text-xl font-semibold text-gray-900 group-hover:text-orange-600 transition duration-300">
                         {member.name}
                       </h3>
-                      <p className="text-orange-500 uppercase text-sm font-medium mt-1">{member.role}</p>
+                      <p className="text-orange-500 uppercase text-sm font-medium mt-1">
+                        {member.role}
+                      </p>
                       <p className="text-gray-600 mt-3 text-sm line-clamp-2">
-                        {member.bio || "Team member at Dream More with expertise in their field."}
+                        {member.bio ||
+                          "Team member at Dream More with expertise in their field."}
                       </p>
                     </div>
                   </div>
@@ -346,8 +401,7 @@ function About() {
         </div>
       </motion.section>
     </>
-  )
+  );
 }
 
-export default About
-
+export default About;

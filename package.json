@@ -3,20 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.10.0",
     "@heroicons/react": "^2.2.0",
     "axios": "^1.8.1",
     "framer-motion": "^12.4.3",
     "lucide-react": "^0.487.0",
-    "next": "15.1.7",
+    "next": "^14.2.25",
     "nodemailer": "^6.10.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.15.1",
     "react-router-dom": "^7.2.0",
     "swiper": "^11.2.4"

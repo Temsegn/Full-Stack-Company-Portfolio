@@ -3,14 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   // Common link style function
-  const getLinkClass = (href) => 
-    `transition hover:text-gray-500/75 ${pathname === href ? 'text-orange-600' : 'text-gray-500'}`;
+  const getLinkClass = (href) =>
+    `transition hover:text-gray-500/75 ${
+      pathname === href ? "text-orange-600" : "text-gray-500"
+    }`;
+
   const navLinks = [
     { href: "/", text: "Home" },
     { href: "/about", text: "About Us" },
@@ -32,14 +36,26 @@ function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex text-md items-center space-x-6 mr-20">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={getLinkClass(link.href)}
-            >
+            <Link key={link.href} href={link.href} className={getLinkClass(link.href)}>
               {link.text}
             </Link>
           ))}
+          <SignedOut>
+            <SignInButton
+              mode="modal"
+              appearance={{
+                elements: {
+                  card: "bg-orange-600 text-white border-none shadow-xl",
+                  headerTitle: "text-white text-2xl font-bold",
+                  headerSubtitle: "text-orange-200",
+                  formButtonPrimary: "bg-white text-orange-600 hover:bg-orange-200",
+                },
+              }}
+            />
+          </SignedOut>
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -91,16 +107,16 @@ function Header() {
               />
             </svg>
           </button>
-          
+
           <ul className="flex flex-col gap-6 mt-16">
             {navLinks.map((link, index) => (
               <li
                 key={link.text}
                 className="opacity-0 transform -translate-x-4"
                 style={{
-                  animation: menuOpen 
+                  animation: menuOpen
                     ? `slideIn 0.3s ease forwards ${index * 0.1}s`
-                    : "none"
+                    : "none",
                 }}
               >
                 <Link
@@ -112,6 +128,22 @@ function Header() {
                 </Link>
               </li>
             ))}
+            <SignedOut>
+              <SignInButton
+                mode="modal"
+                appearance={{
+                  elements: {
+                    card: "bg-orange-600 text-white border-none shadow-xl",
+                    headerTitle: "text-white text-2xl font-bold",
+                    headerSubtitle: "text-orange-200",
+                    formButtonPrimary: "bg-white text-orange-600 hover:bg-orange-200",
+                  },
+                }}
+              />
+            </SignedOut>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </ul>
         </div>
       </div>
