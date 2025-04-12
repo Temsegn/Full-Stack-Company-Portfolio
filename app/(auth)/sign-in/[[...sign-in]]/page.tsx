@@ -8,7 +8,7 @@ export default function SignInPage() {
   const { user, isLoaded } = useUser();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const redirectUrl = searchParams.get('redirect_url') || '/course';
+  const redirectUrl = searchParams?.get('redirect_url') || '/course';
   const normalizedRedirectUrl = redirectUrl.startsWith('http')
     ? new URL(redirectUrl).pathname + new URL(redirectUrl).search
     : redirectUrl;
