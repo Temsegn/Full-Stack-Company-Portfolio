@@ -4,7 +4,7 @@ import { SignUp } from "@clerk/nextjs";
 import { useState } from "react";
 
 export default function SignUpPage() {
-  const [error, setError] = useState(null); // State to track errors
+  const [error, setError] = useState<{ message: string } | null>(null);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
